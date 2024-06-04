@@ -1,5 +1,7 @@
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quotes/features/home/peresetation/view_model/home_cubit/home_cubit.dart';
 import 'package:quotes/features/home/peresetation/views/home_view.dart';
 import 'package:quotes/features/splash/presentation/views/splash_view.dart';
 
@@ -12,9 +14,12 @@ static const kHomeView = '/home';
       path: kSplashView,
       builder: (context, state) => const SplashView(),
     ),
-    GoRoute(
+     GoRoute(
       path: kHomeView,
-      builder: (context, state) => const HomeView(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => HomeCubit(),
+        child: const HomeView(),
+      ),
     ),
   ]);
 }

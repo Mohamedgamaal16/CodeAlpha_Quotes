@@ -18,13 +18,12 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(milliseconds: 2000), () {
-      navigateToNextPage(context); 
+      navigateToNextPage(context);
     });
   }
 
   void navigateToNextPage(BuildContext context) {
-   
-   context.go(AppRouter.kHomeView);
+    GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
   }
 
   @override
@@ -46,12 +45,13 @@ class _SplashViewBodyState extends State<SplashViewBody> {
               )
             ],
           ),
-          const SizedBox(height: 20.0), 
+          const SizedBox(height: 12.0),
           AnimatedTextKit(
             animatedTexts: [
               TypewriterAnimatedText(
                 'Explore a world of quotes',
-                textStyle: AppStyles.poppinsStyleMedium16(context).copyWith(color: Colors.white),
+                textStyle: AppStyles.poppinsStyleMedium16(context)
+                    .copyWith(color: Colors.white),
               )
             ],
           ),
