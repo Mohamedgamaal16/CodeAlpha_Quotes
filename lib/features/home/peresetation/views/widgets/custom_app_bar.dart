@@ -1,11 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:quotes/core/utils/app_styles.dart';
 import 'package:quotes/core/utils/constants.dart';
 import 'package:quotes/core/utils/gradient_text.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String title; // Add a parameter for the title
+class CustomAppBar extends StatelessWidget {
+  final String title;
 
   const CustomAppBar({
     super.key,
@@ -13,11 +12,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   });
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight); 
-
-  @override
   Widget build(BuildContext context) {
-    return AppBar(
+    return SliverAppBar(
+      pinned: true,
+      floating: true,
       backgroundColor: AppColors.kPrimaryColor,
       title: GradientText(
         title,
@@ -28,11 +26,23 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
           icon: const Icon(Icons.search),
           color: Colors.white,
-          onPressed: () {
-            // Handle search functionality
-          },
+          onPressed: () {},
         ),
       ],
+      bottom:  TabBar(
+        isScrollable: true,
+        tabAlignment: TabAlignment.start,
+        indicatorColor: const Color(0xff68738D),
+        indicatorWeight: 0.0001,
+        unselectedLabelColor: const Color(0xff68738D),
+        labelColor: Colors.white,labelStyle: AppStyles.poppinsStyleMedium12(context),
+        tabs: const [
+          Tab(text: 'Today Quotes'),
+          Tab(text: 'Popular Quotes'),
+          Tab(text: 'Happy Quotes'),
+          Tab(text: 'Sad Quotes'),
+        ],
+      ),
     );
   }
 }

@@ -21,7 +21,7 @@ abstract class AppStyles {
    static TextStyle poppinsStyleMedium12(BuildContext context) {
     return TextStyle(
       color: Colors.white,
-      fontSize: getResponsiveFontSize(context, fontSize: 12),
+      fontSize: getResponsiveFontSize(context, fontSize: 14),
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w500,
     );

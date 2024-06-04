@@ -17,7 +17,6 @@ class HomeView extends StatelessWidget {
           body: SafeArea(
             child: homeCubit.appPages[homeCubit.currentIndex],
           ),
-          appBar: const CustomAppBar(title: "QUOTES"),
           bottomNavigationBar: CustomBottomNavBar(
             changePages: homeCubit.changePages,
             currentIndex: homeCubit.currentIndex,
