@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quotes/core/utils/constants.dart';
 import 'package:quotes/features/home/peresetation/views/widgets/custom_app_bar.dart';
 import 'package:quotes/features/home/peresetation/views/widgets/today_view.dart';
 
@@ -9,20 +10,23 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
-      child: NestedScrollView(
-        floatHeaderSlivers: true,
-        headerSliverBuilder: (context, innerBoxIsScrolled) => [
-          const CustomAppBar(
-            title: 'QUOTES',
+      child: Scaffold(backgroundColor: AppColors.kPrimaryColor,
+        body: NestedScrollView(
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return [
+              const CustomAppBar(title: "Quotes"),
+            ];
+          },
+          body: const TabBarView(
+            children: [
+                TodayView()
+
+              ,
+              TodayView(),
+              TodayView(),
+              TodayView(),
+            ],
           ),
-        ],
-        body: const TabBarView(
-          children: [
-            TodayView(),
-            TodayView(),
-            TodayView(),
-            TodayView(),
-          ],
         ),
       ),
     );

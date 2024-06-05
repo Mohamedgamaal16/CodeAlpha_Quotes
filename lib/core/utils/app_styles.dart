@@ -10,6 +10,7 @@ abstract class AppStyles {
       fontWeight: FontWeight.w400,
     );
   }
+
   static TextStyle interStyleBold12(BuildContext context) {
     return TextStyle(
       color: Colors.black,
@@ -18,22 +19,25 @@ abstract class AppStyles {
       fontWeight: FontWeight.w700,
     );
   }
-   static TextStyle poppinsStyleMedium12(BuildContext context) {
+
+  static TextStyle poppinsStyleMedium12(BuildContext context) {
     return TextStyle(
       color: Colors.white,
-      fontSize: getResponsiveFontSize(context, fontSize: 14),
+      fontSize: getResponsiveFontSize(context, fontSize: 12),
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w500,
     );
   }
+
   static TextStyle poppinsStyleRegular12(BuildContext context) {
     return TextStyle(
       color: AppColors.kPrimaryColor,
-      fontSize: getResponsiveFontSize(context, fontSize: 12),
+      fontSize: getResponsiveFontSize(context, fontSize: 14),
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w400,
     );
   }
+
   static TextStyle poppinsStyleRegular14(BuildContext context) {
     return TextStyle(
       color: AppColors.kPrimaryColor,
@@ -42,7 +46,8 @@ abstract class AppStyles {
       fontWeight: FontWeight.w400,
     );
   }
-static TextStyle poppinsStyleSemiBold14(BuildContext context) {
+
+  static TextStyle poppinsStyleSemiBold14(BuildContext context) {
     return TextStyle(
       color: AppColors.kPrimaryColor,
       fontSize: getResponsiveFontSize(context, fontSize: 14),
@@ -50,6 +55,7 @@ static TextStyle poppinsStyleSemiBold14(BuildContext context) {
       fontWeight: FontWeight.w600,
     );
   }
+
   static TextStyle poppinsStyleBold14(BuildContext context) {
     return TextStyle(
       color: AppColors.kPrimaryColor,
@@ -59,7 +65,7 @@ static TextStyle poppinsStyleSemiBold14(BuildContext context) {
     );
   }
 
-static TextStyle poppinsStyleSemiBold16(BuildContext context) {
+  static TextStyle poppinsStyleSemiBold16(BuildContext context) {
     return TextStyle(
       color: AppColors.kPrimaryColor,
       fontSize: getResponsiveFontSize(context, fontSize: 16),
@@ -67,6 +73,7 @@ static TextStyle poppinsStyleSemiBold16(BuildContext context) {
       fontWeight: FontWeight.w600,
     );
   }
+
   static TextStyle poppinsStyleMedium16(BuildContext context) {
     return TextStyle(
       color: AppColors.kPrimaryColor,
@@ -75,6 +82,7 @@ static TextStyle poppinsStyleSemiBold16(BuildContext context) {
       fontWeight: FontWeight.w500,
     );
   }
+
   static TextStyle poppinsStyleBold24(BuildContext context) {
     return TextStyle(
       color: AppColors.kPrimaryColor,
@@ -83,7 +91,24 @@ static TextStyle poppinsStyleSemiBold16(BuildContext context) {
       fontWeight: FontWeight.w700,
     );
   }
-   static TextStyle poppinsStyleBold60(BuildContext context) {
+static TextStyle poppinsStyleregular20(BuildContext context) {
+    return TextStyle(
+      color: AppColors.kPrimaryColor,
+      fontSize: getResponsiveFontSize(context, fontSize: 20),
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w400,
+    );
+  }
+  static TextStyle poppinsStyleregular30(BuildContext context) {
+    return TextStyle(
+      color: Colors.white,
+      fontSize: getResponsiveFontSize(context, fontSize: 30),
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w400,
+    );
+  }
+
+  static TextStyle poppinsStyleBold60(BuildContext context) {
     return TextStyle(
       color: AppColors.kPrimaryColor,
       fontSize: getResponsiveFontSize(context, fontSize: 60),
@@ -91,6 +116,7 @@ static TextStyle poppinsStyleSemiBold16(BuildContext context) {
       fontWeight: FontWeight.w700,
     );
   }
+
   static TextStyle poppinsStyleBold18(BuildContext context) {
     return TextStyle(
       color: Colors.black,
@@ -99,7 +125,6 @@ static TextStyle poppinsStyleSemiBold16(BuildContext context) {
       fontWeight: FontWeight.w700,
     );
   }
-
 }
 
 double getResponsiveFontSize(BuildContext context, {required double fontSize}) {

@@ -19,7 +19,7 @@ class CustomBottomNavBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       activeColor: Colors.white,
       textStyle: AppStyles.poppinsStyleMedium12(context),
-      gap: 6,
+      gap: 10,
       tabBackgroundColor: AppColors.kPrimaryColor,
       backgroundColor:AppColors.kPrimaryColor ,
       onTabChange: changePages,mainAxisAlignment: MainAxisAlignment.spaceEvenly,
