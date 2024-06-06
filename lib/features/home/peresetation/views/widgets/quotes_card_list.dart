@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:quotes/features/home/data/models/quote_model.dart';
 import 'package:quotes/features/home/peresetation/views/widgets/quotes_card.dart';
 
 class QuotesCardList extends StatelessWidget {
-  const QuotesCardList({super.key});
-
+  const QuotesCardList({super.key, required this.quoteModel});
+final QuoteModel quoteModel;
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: 20,
-        itemBuilder: (context, index) {
-          return const Padding(
-            padding: EdgeInsets.all(8.0),
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          return  Padding(
+            padding: const EdgeInsets.all(8.0),
             child: QuotesCard(
-                quote: "I never did a day's work in my life.  It was all fun",
-                authorName: "thomas-edison"),
+              quote: quoteModel.results[index].content,
+              authorName: quoteModel.results[index].author,
+            ),
           );
-        });
+        },
+        childCount: 20,
+      ),
+    );
   }
 }
