@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:quotes/core/utils/app_styles.dart';
+import 'package:quotes/core/utils/constants.dart';
+import 'package:quotes/core/widgets/loading_indicator.dart';
 import 'package:quotes/features/home/peresetation/view_model/today_randmo_quote_cubit/today_randmo_quote_cubit.dart';
+import 'package:share_plus/share_plus.dart';
 
 class TodayCard extends StatelessWidget {
   const TodayCard({Key? key}) : super(key: key);
@@ -28,7 +32,8 @@ class TodayCard extends StatelessWidget {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 20, top: 55),
+                    padding:
+                        const EdgeInsets.only(left: 20, top: 55, right: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
@@ -52,7 +57,29 @@ class TodayCard extends StatelessWidget {
                   ),
                 ),
               ),
-    
+              Positioned(
+                right: 20,
+                bottom: 10,
+                child: Container(
+                  height: 35,
+                  width: 35,
+                  decoration: const BoxDecoration(
+                      shape: BoxShape.circle, color: Colors.white),
+                  child: Center(
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () async {
+                        await Share.share(state.quote.content);
+                      },
+                      icon: const Icon(
+                        FontAwesomeIcons.shareNodes,
+                        color: AppColors.kPrimaryColor,
+                        size: 18, // Adjust size as needed
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               // Quote image
               Positioned(
                 top: 0,
@@ -72,8 +99,11 @@ class TodayCard extends StatelessWidget {
               ),
             ],
           );
-        } else   {
-          return Text("Try Again"); // Return an empty container when the state is not TodyRandomQuoteSuccess
+        } else if (state is TodyRandomQuoteLoading) {
+          return const CustomLoadingIndicator();
+        } else {
+          return Text(
+              "Try Again"); // Return an empty container when the state is not TodyRandomQuoteSuccess
         }
       },
     );

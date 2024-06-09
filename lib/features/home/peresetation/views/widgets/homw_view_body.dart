@@ -4,9 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quotes/core/api/dio_consumer.dart';
 import 'package:quotes/core/utils/constants.dart';
 import 'package:quotes/features/home/data/repos/home_repo_impl.dart';
+import 'package:quotes/features/home/peresetation/view_model/others_quote_cubit/others_quote_cubit.dart';
 import 'package:quotes/features/home/peresetation/view_model/today_randmo_quote_cubit/today_randmo_quote_cubit.dart';
 import 'package:quotes/features/home/peresetation/view_model/tody_quotes_cubit/tody_quotes_cubit.dart';
 import 'package:quotes/features/home/peresetation/views/widgets/custom_app_bar.dart';
+import 'package:quotes/features/home/peresetation/views/widgets/other_tabs_view.dart';
 import 'package:quotes/features/home/peresetation/views/widgets/today_view.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -44,9 +46,33 @@ class HomeViewBody extends StatelessWidget {
                   child: const TodayView(),
                 ),
               ),
-              const TodayView(),
-              const TodayView(),
-              const TodayView(),
+              BlocProvider(
+                create: (context) =>
+                    OthersQuoteCubit(HomeRepoImpl(api: DioConsumer(dio: Dio())))
+                      ..getOthersQuotes(quoteCategory: "most"),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 20.0, right: 15, top: 20),
+                  child: OtherTabsView(),
+                ),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    OthersQuoteCubit(HomeRepoImpl(api: DioConsumer(dio: Dio())))
+                      ..getOthersQuotes(quoteCategory: "happy"),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 20.0, right: 15, top: 20),
+                  child: OtherTabsView(),
+                ),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    OthersQuoteCubit(HomeRepoImpl(api: DioConsumer(dio: Dio())))
+                      ..getOthersQuotes(quoteCategory: "bad"),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 20.0, right: 15, top: 20),
+                  child: OtherTabsView(),
+                ),
+              ),
             ],
           ),
         ),

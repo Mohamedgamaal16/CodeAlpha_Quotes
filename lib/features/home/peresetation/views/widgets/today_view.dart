@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quotes/core/utils/app_styles.dart';
 import 'package:quotes/core/widgets/loading_indicator.dart';
+import 'package:quotes/features/home/data/models/others_data_model.dart';
 import 'package:quotes/features/home/peresetation/view_model/tody_quotes_cubit/tody_quotes_cubit.dart';
 import 'package:quotes/features/home/peresetation/views/widgets/quotes_card_list.dart';
 import 'package:quotes/features/home/peresetation/views/widgets/today_card.dart';
@@ -17,9 +18,7 @@ class TodayView extends StatelessWidget {
           return CustomScrollView(
             slivers: [
               const SliverToBoxAdapter(
-                child: TodayCard(
-                  
-                ),
+                child: TodayCard(),
               ),
               const SliverToBoxAdapter(child: SizedBox(height: 12.0)),
               SliverToBoxAdapter(
@@ -38,6 +37,7 @@ class TodayView extends StatelessWidget {
               const SliverToBoxAdapter(child: SizedBox(height: 12.0)),
               QuotesCardList(
                 quoteModel: state.quote,
+               
               ),
             ],
           );

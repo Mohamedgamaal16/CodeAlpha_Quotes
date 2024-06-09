@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:quotes/core/utils/app_styles.dart';
 import 'package:quotes/core/utils/constants.dart';
+import 'package:share_plus/share_plus.dart';
 
 class QuotesCard extends StatelessWidget {
   const QuotesCard({
@@ -23,7 +25,8 @@ class QuotesCard extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 20, top: 30, right: 20, bottom: 20),
+            padding:
+                const EdgeInsets.only(left: 20, top: 30, right: 20, bottom: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
@@ -37,8 +40,10 @@ class QuotesCard extends StatelessWidget {
                 // Author name
                 Text(
                   '- $authorName',
-                  style: AppStyles.poppinsStyleMedium12(context).copyWith(color: AppColors.kPrimaryColor),
+                  style: AppStyles.poppinsStyleMedium12(context)
+                      .copyWith(color: AppColors.kPrimaryColor),
                 ),
+                
               ],
             ),
           ),
@@ -57,6 +62,37 @@ class QuotesCard extends StatelessWidget {
                 opacity: 0.2,
                 image: AssetImage("assets/images/quote.png"),
                 fit: BoxFit.fill,
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          right: 20,
+          bottom: 10,
+          child: Container(
+            height: 35,
+            width: 35,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                colors: AppColors.buttonGradient,
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            child: Center(
+              child: IconButton(
+                padding: EdgeInsets.zero,
+                onPressed: () async {
+                await  Share.share(
+                     quote); 
+                 
+                },
+                icon: const Icon(
+                  FontAwesomeIcons.shareNodes,
+                  color: Colors.white,
+                  size: 18, // Adjust size as needed
+                ),
               ),
             ),
           ),

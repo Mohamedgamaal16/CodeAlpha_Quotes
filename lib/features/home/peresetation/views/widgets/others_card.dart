@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:quotes/features/home/data/models/others_data_model.dart';
 import 'package:quotes/features/home/data/models/quote_model.dart';
 import 'package:quotes/features/home/peresetation/views/widgets/quotes_card.dart';
 
-class QuotesCardList extends StatelessWidget {
-  const QuotesCardList({super.key, required this.quoteModel});
-final QuoteModel quoteModel;
+class OthersQuotesCardList extends StatelessWidget {
+  const OthersQuotesCardList({super.key, required this.quoteModel});
+final OthersQuoteModel quoteModel;
   @override
   Widget build(BuildContext context) {
     return SliverList(
