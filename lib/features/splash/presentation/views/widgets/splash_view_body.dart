@@ -23,7 +23,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   }
 
   void navigateToNextPage(BuildContext context) {
-    GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+    GoRouter.of(context).pushReplacement(AppRouter.kLogInView);
   }
 
   @override

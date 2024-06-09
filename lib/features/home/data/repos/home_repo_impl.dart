@@ -17,7 +17,7 @@ class HomeRepoImpl implements HomeRepo {
       final reponse = await api.get(EndPoint.quotes);
       final data = QuoteModel.fromJson(reponse);
       return right(data);
-    } on ServerException catch (e) {
+    } on QuoteServerException catch (e) {
       return left(e.errModel.message);
     }
   }
@@ -28,7 +28,7 @@ class HomeRepoImpl implements HomeRepo {
       final reponse = await api.get(EndPoint.random);
       final data = RandomQuoteModel.fromJson(reponse);
       return right(data);
-    } on ServerException catch (e) {
+    } on QuoteServerException catch (e) {
       return left(e.errModel.message);
     }
   }
@@ -41,7 +41,7 @@ class HomeRepoImpl implements HomeRepo {
           .get(EndPoint.search, queryParamters: {"query": quoteCategory});
       final data = OthersQuoteModel.fromJson(reponse);
       return right(data);
-    } on ServerException catch (e) {
+    } on QuoteServerException catch (e) {
       return left(e.errModel.message);
     }
   }

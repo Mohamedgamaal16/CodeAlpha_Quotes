@@ -2,16 +2,17 @@
 import 'package:dio/dio.dart';
 import 'package:quotes/core/api/api_consumer.dart';
 import 'package:quotes/core/api/api_interceptors.dart';
-import 'package:quotes/core/api/endpoint.dart';
 import 'package:quotes/core/errors/exceptions.dart';
 
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;
-  DioConsumer({
+  final String baseUrl;
+  final bool quoteSever;
+  DioConsumer( {required this.baseUrl,required this.quoteSever,
     required this.dio,
   }) : super(dio) {
-    dio.options.baseUrl = EndPoint.baseUrl;
+    dio.options.baseUrl = baseUrl;
     dio.interceptors.add(ApiInterceptor());
     dio.interceptors.add(LogInterceptor(
       request: true,
@@ -38,8 +39,12 @@ class DioConsumer extends ApiConsumer {
       return response.data;
     } on DioException catch (e) {
       
-   
-        handleDioExceptions(e);
+   if (quoteSever == true) {
+             handleDioExceptions(e);
+
+   }else{
+    handleAuthDioExceptions(e);
+   }
       
     }
   }
@@ -60,8 +65,12 @@ class DioConsumer extends ApiConsumer {
       return response.data;
     } on DioException catch (e) {
       
-        handleDioExceptions(e);
-      
+if (quoteSever == true) {
+             handleDioExceptions(e);
+
+   }else{
+    handleAuthDioExceptions(e);
+   }      
         
       
     }
@@ -82,8 +91,12 @@ class DioConsumer extends ApiConsumer {
       );
       return response.data;
     } on DioException catch (e) {
-        handleDioExceptions(e);
-      
+if (quoteSever == true) {
+             handleDioExceptions(e);
+
+   }else{
+    handleAuthDioExceptions(e);
+   }      
     }
   }
 
@@ -103,8 +116,12 @@ class DioConsumer extends ApiConsumer {
       return response.data;
     } on DioException catch (e) {
       
-        handleDioExceptions(e);
-      
+if (quoteSever == true) {
+             handleDioExceptions(e);
+
+   }else{
+    handleAuthDioExceptions(e);
+   }      
     }
   }
 }

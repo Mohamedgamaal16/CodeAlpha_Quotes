@@ -1,58 +1,118 @@
 import 'package:dio/dio.dart';
+import 'package:quotes/core/errors/models/auth_error_model.dart';
 import 'package:quotes/core/errors/models/erro_model.dart';
 
-class ServerException implements Exception {
+class QuoteServerException implements Exception {
   final ErrorModel errModel;
 
-  ServerException({required this.errModel});
+  QuoteServerException({required this.errModel});
 }
 
 void handleDioExceptions(DioException e) {
   switch (e.type) {
     case DioExceptionType.connectionTimeout:
-      throw ServerException(
+      throw QuoteServerException(
           errModel: ErrorModel.fromJson(e.response!.data));
     case DioExceptionType.sendTimeout:
-      throw ServerException(
+      throw QuoteServerException(
           errModel: ErrorModel.fromJson(e.response!.data));
     case DioExceptionType.receiveTimeout:
-      throw ServerException(
+      throw QuoteServerException(
           errModel: ErrorModel.fromJson(e.response!.data));
     case DioExceptionType.badCertificate:
-      throw ServerException(
+      throw QuoteServerException(
           errModel: ErrorModel.fromJson(e.response!.data));
     case DioExceptionType.cancel:
-      throw ServerException(
+      throw QuoteServerException(
           errModel: ErrorModel.fromJson(e.response!.data));
     case DioExceptionType.connectionError:
-      throw ServerException(
+      throw QuoteServerException(
           errModel: ErrorModel.fromJson(e.response!.data));
     case DioExceptionType.unknown:
-      throw ServerException(
+      throw QuoteServerException(
           errModel: ErrorModel.fromJson(e.response!.data));
     case DioExceptionType.badResponse:
       switch (e.response?.statusCode) {
         case 400: // Bad request
-          throw ServerException(
+          throw QuoteServerException(
               errModel: ErrorModel.fromJson(e.response!.data));
         case 401: //unauthorized
-          throw ServerException(
+          throw QuoteServerException(
               errModel: ErrorModel.fromJson(e.response!.data));
         case 403: //forbidden
-          throw ServerException(
+          throw QuoteServerException(
               errModel: ErrorModel.fromJson(e.response!.data));
         case 404: //not found
-          throw ServerException(
+          throw QuoteServerException(
               errModel: ErrorModel.fromJson(e.response!.data));
         case 409: //cofficient
-          throw ServerException(
+          throw QuoteServerException(
               errModel: ErrorModel.fromJson(e.response!.data));
         case 422: //  Unprocessable Entity
-          throw ServerException(
+          throw QuoteServerException(
               errModel: ErrorModel.fromJson(e.response!.data));
         case 504: // Server exception
-          throw ServerException(
+          throw QuoteServerException(
               errModel: ErrorModel(
+                  message: 'Server connectivity issues',status: "504"));
+      }
+  }
+}
+
+//Auth
+
+class AuthServerException implements Exception {
+  final AuthErrorModel errModel;
+
+  AuthServerException({required this.errModel});
+}
+
+void handleAuthDioExceptions(DioException e) {
+  switch (e.type) {
+    case DioExceptionType.connectionTimeout:
+      throw AuthServerException(
+          errModel: AuthErrorModel.fromJson(e.response!.data));
+    case DioExceptionType.sendTimeout:
+      throw AuthServerException(
+          errModel: AuthErrorModel.fromJson(e.response!.data));
+    case DioExceptionType.receiveTimeout:
+      throw AuthServerException(
+          errModel: AuthErrorModel.fromJson(e.response!.data));
+    case DioExceptionType.badCertificate:
+      throw AuthServerException(
+          errModel: AuthErrorModel.fromJson(e.response!.data));
+    case DioExceptionType.cancel:
+      throw AuthServerException(
+          errModel: AuthErrorModel.fromJson(e.response!.data));
+    case DioExceptionType.connectionError:
+      throw AuthServerException(
+          errModel: AuthErrorModel.fromJson(e.response!.data));
+    case DioExceptionType.unknown:
+      throw AuthServerException(
+          errModel: AuthErrorModel.fromJson(e.response!.data));
+    case DioExceptionType.badResponse:
+      switch (e.response?.statusCode) {
+        case 400: // Bad request
+          throw AuthServerException(
+              errModel: AuthErrorModel.fromJson(e.response!.data));
+        case 401: //unauthorized
+          throw AuthServerException(
+              errModel: AuthErrorModel.fromJson(e.response!.data));
+        case 403: //forbidden
+          throw AuthServerException(
+              errModel: AuthErrorModel.fromJson(e.response!.data));
+        case 404: //not found
+          throw AuthServerException(
+              errModel: AuthErrorModel.fromJson(e.response!.data));
+        case 409: //cofficient
+          throw AuthServerException(
+              errModel: AuthErrorModel.fromJson(e.response!.data));
+        case 422: //  Unprocessable Entity
+          throw AuthServerException(
+              errModel: AuthErrorModel.fromJson(e.response!.data));
+        case 504: // Server exception
+          throw AuthServerException(
+              errModel: AuthErrorModel(
                   message: 'Server connectivity issues',status: "504"));
       }
   }

@@ -52,6 +52,7 @@ dependencies:
   flutter_swiper_view: ^1.1.8
   loading_indicator: ^3.1.1
   share_plus: ^7.2.2
+  jwt_decoder: ^2.0.1
 
 dev_dependencies:
   flutter_test:
