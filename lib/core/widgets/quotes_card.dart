@@ -7,11 +7,11 @@ import 'package:share_plus/share_plus.dart';
 class QuotesCard extends StatelessWidget {
   const QuotesCard({
     super.key,
-    required this.quote,
-    required this.authorName,
+    required this.title,
+    required this.subTitle,
   });
 
-  final String quote, authorName;
+  final String title, subTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +33,17 @@ class QuotesCard extends StatelessWidget {
               children: [
                 // Quote text
                 Text(
-                  quote,
+                  title,
                   style: AppStyles.poppinsStyleregular20(context),
                 ),
                 const SizedBox(height: 10),
                 // Author name
-                Text(
-                  '- $authorName',
-                  style: AppStyles.poppinsStyleMedium12(context)
-                      .copyWith(color: AppColors.kPrimaryColor),
+                Container(width: MediaQuery.of(context).size.width * 0.6,
+                  child: Text(
+                    '- $subTitle',
+                    style: AppStyles.poppinsStyleMedium12(context)
+                        .copyWith(color: AppColors.kPrimaryColor),
+                  ),
                 ),
                 
               ],
@@ -66,6 +68,7 @@ class QuotesCard extends StatelessWidget {
             ),
           ),
         ),
+        
         Positioned(
           right: 20,
           bottom: 10,
@@ -85,7 +88,7 @@ class QuotesCard extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 onPressed: () async {
                 await  Share.share(
-                     quote); 
+                     title); 
                  
                 },
                 icon: const Icon(

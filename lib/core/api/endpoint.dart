@@ -3,7 +3,7 @@
 class EndPoint {
   static String quotebaseUrl = "https://api.quotable.io/";
     static String authbaseUrl = "https://climb-upp-2c04b3f20fb9.herokuapp.com/api/v1/";
-
+static String  authors = "authors";
   static String quotes = "quotes";
   static String random = "random";
   static String search = "search/quotes/";
