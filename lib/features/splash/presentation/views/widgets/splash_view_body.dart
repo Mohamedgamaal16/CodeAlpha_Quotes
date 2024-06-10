@@ -1,10 +1,12 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quotes/core/api/endpoint.dart';
 import 'package:quotes/core/utils/app_router.dart';
 import 'package:quotes/core/utils/app_styles.dart';
 import 'package:quotes/core/utils/constants.dart';
 import 'package:quotes/core/utils/gradient_text.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -22,8 +24,16 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     });
   }
 
-  void navigateToNextPage(BuildContext context) {
+  void navigateToNextPage(BuildContext context)async {
+    final  prefs = await SharedPreferences.getInstance();
+
+       final hasToken = prefs.getBool("isLogin")?? false ; // Set default to false
+
+  if (hasToken) {
+    GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+  } else {
     GoRouter.of(context).pushReplacement(AppRouter.kLogInView);
+  }
   }
 
   @override

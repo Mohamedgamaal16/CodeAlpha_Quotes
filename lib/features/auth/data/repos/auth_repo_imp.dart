@@ -1,11 +1,12 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:quotes/core/api/api_consumer.dart';
 import 'package:quotes/core/api/endpoint.dart';
 import 'package:quotes/core/errors/exceptions.dart';
+import 'package:quotes/core/utils/service_locator.dart';
 import 'package:quotes/features/auth/data/model/auth_model.dart';
 import 'package:quotes/features/auth/data/repos/auth_repo.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepoImp implements AuthRepo {
   ApiConsumer api;
@@ -35,7 +36,11 @@ class AuthRepoImp implements AuthRepo {
       // final SharedPreferences prefs = await getIt.getAsync<SharedPreferences>();
       // prefs.setString(ApiKey.token, data.token);
       // prefs.setString(ApiKey.id, decodeToken[ApiKey.id]);
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString(ApiKey.token, data.token);
+      prefs.setBool("isLogin", true);
 
+      prefs.setString(ApiKey.id, decodeToken[ApiKey.id]);
       return left(data);
     } on AuthServerException catch (e) {
       return right(e.errModel.message);
@@ -56,7 +61,12 @@ class AuthRepoImp implements AuthRepo {
       // final SharedPreferences prefs = await getIt.getAsync<SharedPreferences>();
       // prefs.setString(ApiKey.token, data.token);
       // prefs.setString(ApiKey.id, decodeToken[ApiKey.id]);
-      
+
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString(ApiKey.token, data.token);
+      prefs.setBool("isLogin", true);
+
+      prefs.setString(ApiKey.id, decodeToken[ApiKey.id]);
       return left(data);
     } on AuthServerException catch (e) {
       return right(e.errModel.message);

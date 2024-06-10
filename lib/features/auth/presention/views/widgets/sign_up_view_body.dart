@@ -1,4 +1,5 @@
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -21,17 +22,31 @@ class SignUpViewBody extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) async {
         if (state is AuthSuccessful) {
-          // SharedPreferences prefs = await getIt.getAsync<SharedPreferences>();
-          // prefs.setBool(SharedPrefKeys.kSplashIsLoggedIn, true);
-          if (context.mounted) {
-            GoRouter.of(context).replace(AppRouter.kHomeView);
-          }
+          final  prefs = await SharedPreferences.getInstance();
+
+       final onBoardingDone = prefs.getBool("onBoardingDone")?? false ; // Set default to false
+
+  if (onBoardingDone) {
+    GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+  } else {
+    GoRouter.of(context).pushReplacement(AppRouter.kIntroductionScreen);
+  }
         } else if (state is AuthFaliure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.errMessage),
+         AwesomeDialog(
+            context: context,
+            animType: AnimType.scale,
+            dialogType: DialogType.error,
+            body: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0), 
+                child: Text(
+                  state.errMessage,
+                  style: AppStyles.poppinsStyleRegular14(context),
+                ),
+              ),
             ),
-          );
+            btnCancelOnPress: () {},
+          ).show();
         }
       },
       builder: (context, state) {
@@ -123,6 +138,8 @@ class SignUpViewBody extends StatelessWidget {
                 CustomSignFooter(
                   pageName: 'Log In',
                   onTap: () {
+                    
+
                     GoRouter.of(context).push(AppRouter.kLogInView);
                   },
                   sentence: "already have an account",
