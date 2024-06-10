@@ -31,7 +31,7 @@ class CustomBottomNavBar extends StatelessWidget {
         ),
         GButton(
           icon: FontAwesomeIcons.user,
-          text: 'Authors',
+          text: 'Profile',
           iconColor: Colors.white,
         ),
       ],

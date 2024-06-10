@@ -9,6 +9,9 @@ class EndPoint {
   static String search = "search/quotes/";
     static String signUp = "users/signup";
   static String login = "users/login";
+  static String getUserData(id) {
+    return "users/$id";
+  }  static String changePassword = "users/change-password";
 
 }
 
