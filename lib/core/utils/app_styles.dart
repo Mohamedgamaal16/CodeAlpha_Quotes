@@ -99,6 +99,23 @@ static TextStyle poppinsStyleregular20(BuildContext context) {
       fontWeight: FontWeight.w400,
     );
   }
+  
+  static TextStyle poppinsStyleSemiBold18(BuildContext context) {
+    return TextStyle(
+      color: AppColors.kPrimaryColor,
+      fontSize: getResponsiveFontSize(context, fontSize: 18),
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w500,
+    );
+  }
+  static TextStyle poppinsStyleBold32(BuildContext context) {
+    return TextStyle(
+      color: AppColors.kPrimaryColor,
+      fontSize: getResponsiveFontSize(context, fontSize: 32),
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w700,
+    );
+  }
   static TextStyle poppinsStyleregular30(BuildContext context) {
     return TextStyle(
       color: Colors.white,

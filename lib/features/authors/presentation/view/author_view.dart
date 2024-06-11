@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quotes/core/utils/app_styles.dart';
 import 'package:quotes/core/utils/constants.dart';
 import 'package:quotes/core/utils/gradient_text.dart';
-import 'package:quotes/features/authors/presentation/view/author_view_body.dart';
-import 'package:quotes/features/home/peresetation/views/widgets/custom_app_bar.dart';
+import 'package:quotes/features/authors/presentation/view/widgets/author_view_body.dart';
 
 class AuthorView extends StatelessWidget {
   const AuthorView({super.key});
