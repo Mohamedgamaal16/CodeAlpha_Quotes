@@ -7,5 +7,7 @@ abstract class HomeRepo {
   Future<Either<String, QuoteModel>> getQuotes();
   Future<Either<String, RandomQuoteModel>> getRandomQuote();
     Future<Either<String, OthersQuoteModel>> getOthersQuote({required String quoteCategory});
+        Future<Either<String, OthersQuoteModel>> quoteSearch({required String searchItem});
+
 
 }

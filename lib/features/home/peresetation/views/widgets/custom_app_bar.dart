@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:quotes/core/function/custom_search_delegate.dart';
 import 'package:quotes/core/utils/app_styles.dart';
 import 'package:quotes/core/utils/constants.dart';
 import 'package:quotes/core/utils/gradient_text.dart';
+import 'package:quotes/features/home/peresetation/view_model/search_cubit/search_cubit.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String title;
@@ -12,6 +16,8 @@ class CustomAppBar extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+         final searchCubit = context.read<SearchCubit>();
+
     return SliverAppBar(
       pinned: true,
       floating: true,
@@ -21,12 +27,17 @@ class CustomAppBar extends StatelessWidget {
         style: AppStyles.poppinsStyleBold24(context),
         gradient: const LinearGradient(colors: AppColors.nameGradient),
       ),
-      actions: [
+      actions:  [
         IconButton(
-          icon: const Icon(Icons.search),
-          color: Colors.white,
-          onPressed: () {},
-        ),
+      icon:  const Icon(Icons.search),
+      color: Colors.white,
+      onPressed: () {
+        showSearch(
+          context: context,
+          delegate: CustomSearchDelegate(searchCubit),
+        );
+      },
+    ),
       ],
       bottom: TabBar(
         isScrollable: true,
@@ -46,3 +57,4 @@ class CustomAppBar extends StatelessWidget {
     );
   }
 }
+

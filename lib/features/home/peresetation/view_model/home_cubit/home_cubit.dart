@@ -6,6 +6,8 @@ import 'package:quotes/core/api/endpoint.dart';
 import 'package:quotes/features/authors/data/repos/author_repo_impl.dart';
 import 'package:quotes/features/authors/presentation/view/Author_view.dart';
 import 'package:quotes/features/authors/presentation/view_model/cubit/authors_cubit.dart';
+import 'package:quotes/features/home/data/repos/home_repo_impl.dart';
+import 'package:quotes/features/home/peresetation/view_model/search_cubit/search_cubit.dart';
 import 'package:quotes/features/home/peresetation/views/widgets/home_view_body.dart';
 import 'package:quotes/features/profile/data/repos/profile_repo_impl.dart';
 import 'package:quotes/features/profile/presentation/view_models/get_user_data_cubit/get_user_data_cubit.dart';
@@ -18,11 +20,17 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
   int currentIndex = 0;
   final List<Widget> appPages = [
-    const HomeViewBody(),
+    BlocProvider(
+      create: (context) => SearchCubit(HomeRepoImpl(
+          api: DioConsumer(
+              baseUrl: EndPoint.quotebaseUrl, quoteSever: true, dio: Dio()))),
+      child: const HomeViewBody(),
+    ),
     BlocProvider(
       create: (context) => AuthorsCubit(AuthorRpoImbl(
           api: DioConsumer(
-              baseUrl: EndPoint.quotebaseUrl, quoteSever: true, dio: Dio())))..fetchAuthors(),
+              baseUrl: EndPoint.quotebaseUrl, quoteSever: true, dio: Dio())))
+        ..fetchAuthors(),
       child: const AuthorView(),
     ),
     MultiBlocProvider(

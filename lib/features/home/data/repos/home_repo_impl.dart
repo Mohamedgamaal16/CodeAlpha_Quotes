@@ -45,4 +45,16 @@ class HomeRepoImpl implements HomeRepo {
       return left(e.errModel.message);
     }
   }
+  
+  @override
+  Future<Either<String, OthersQuoteModel>> quoteSearch({required String searchItem})async {
+   try {
+      final reponse = await api
+          .get(EndPoint.search, queryParamters: {"query": searchItem});
+      final data = OthersQuoteModel.fromJson(reponse);
+      return right(data);
+    } on QuoteServerException catch (e) {
+      return left(e.errModel.message);
+    }
+  }
 }
