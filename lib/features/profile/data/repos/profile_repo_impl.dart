@@ -29,6 +29,7 @@ class ProfileRepoImpl implements ProfileRepo {
   Future logOut(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool("isLogin", false);
+    // prefs.setBool("onBoardingDone", false);
 
     if (context.mounted) {
       GoRouter.of(context).pushReplacement(AppRouter.kLogInView);

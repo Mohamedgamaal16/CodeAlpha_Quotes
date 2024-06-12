@@ -17,22 +17,26 @@ class SingleAuthorDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.kPrimaryColor,
-          title: GradientText(
-            "Back",
-            style: AppStyles.poppinsStyleBold24(context),
-            gradient: const LinearGradient(colors: AppColors.nameGradient),
+          appBar: AppBar(
+            backgroundColor: AppColors.kPrimaryColor,
+            title: GradientText(
+              "Back",
+              style: AppStyles.poppinsStyleBold24(context),
+              gradient: const LinearGradient(colors: AppColors.nameGradient),
+            ),
+            iconTheme: const IconThemeData(color: Colors.white),
           ),
-          iconTheme: const IconThemeData(color: Colors.white),
-        ),
-        body: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(child: SingleAuthorViewBody(title: title, subtitle: subtitle, description: description, link: link,)),
-          ],
-        )
-      ),
+          body: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                  child: SingleAuthorViewBody(
+                title: title,
+                subtitle: subtitle,
+                description: description,
+                link: link,
+              )),
+            ],
+          )),
     );
   }
-
 }
